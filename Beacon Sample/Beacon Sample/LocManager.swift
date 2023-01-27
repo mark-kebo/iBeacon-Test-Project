@@ -32,6 +32,7 @@ class LocManager: NSObject, CLLocationManagerDelegate {
     func initManager() {
         locationManager.delegate = self
         locationManager.allowsBackgroundLocationUpdates = true
+        locationManager.pausesLocationUpdatesAutomatically = false
     }
     
     func start(uuid: UUID) {
@@ -43,6 +44,9 @@ class LocManager: NSObject, CLLocationManagerDelegate {
         
         NSLog("By monitoring for the beacon before ranging, the app is more energy efficient if the beacon is not immediately observable.")
         let beaconRegion = CLBeaconRegion(beaconIdentityConstraint: constraint, identifier: uuid.uuidString)
+        beaconRegion.notifyOnEntry = true
+        beaconRegion.notifyOnExit = true
+        beaconRegion.notifyEntryStateOnDisplay = true
         self.locationManager.startMonitoring(for: beaconRegion)
         self.locationManager.startRangingBeacons(satisfying: constraint)
     }
