@@ -18,6 +18,7 @@
 		D0239B432983E6D200EB755A /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = D0239B422983E6D200EB755A /* Realm */; };
 		D0239B452983E6D200EB755A /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D0239B442983E6D200EB755A /* RealmSwift */; };
 		D0239B472984038900EB755A /* LocManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0239B462984038800EB755A /* LocManager.swift */; };
+		D0B9FD532987BA8A00A9D5D8 /* UserNotificationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B9FD522987BA8A00A9D5D8 /* UserNotificationsService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		7AAC030422683AC300726A68 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7AAC030622683AC300726A68 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D0239B462984038800EB755A /* LocManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocManager.swift; sourceTree = "<group>"; };
+		D0B9FD522987BA8A00A9D5D8 /* UserNotificationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationsService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 				7AAC02FC22683AC200726A68 /* RangeBeaconViewController.swift */,
 				7A3693992280F1A300CDE534 /* ConfigureBeaconViewController.swift */,
 				D0239B462984038800EB755A /* LocManager.swift */,
+				D0B9FD522987BA8A00A9D5D8 /* UserNotificationsService.swift */,
 			);
 			path = "Beacon Sample";
 			sourceTree = "<group>";
@@ -201,6 +204,7 @@
 			files = (
 				D0239B472984038900EB755A /* LocManager.swift in Sources */,
 				7AAC02FD22683AC200726A68 /* RangeBeaconViewController.swift in Sources */,
+				D0B9FD532987BA8A00A9D5D8 /* UserNotificationsService.swift in Sources */,
 				7AAC02FB22683AC200726A68 /* AppDelegate.swift in Sources */,
 				7A36939A2280F1A300CDE534 /* ConfigureBeaconViewController.swift in Sources */,
 			);
@@ -353,13 +357,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2TN72867LT;
+				DEVELOPMENT_TEAM = 43X4B73R3J;
 				INFOPLIST_FILE = "$(PROJECT_DIR)/$(PROJECT_NAME)/Supporting FIles/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.apple-samplecode.BeaconSample${SAMPLE_CODE_DISAMBIGUATOR}";
+				PRODUCT_BUNDLE_IDENTIFIER = test.ibeacon.BeaconSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
@@ -375,13 +379,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2TN72867LT;
+				DEVELOPMENT_TEAM = 43X4B73R3J;
 				INFOPLIST_FILE = "$(PROJECT_DIR)/$(PROJECT_NAME)/Supporting FIles/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.apple-samplecode.BeaconSample${SAMPLE_CODE_DISAMBIGUATOR}";
+				PRODUCT_BUNDLE_IDENTIFIER = test.ibeacon.BeaconSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;

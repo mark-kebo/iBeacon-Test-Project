@@ -27,17 +27,19 @@ class LocManager: NSObject, CLLocationManagerDelegate {
     var beaconConstraints = [CLBeaconIdentityConstraint: [CLBeacon]]()
     var beacons = [CLProximity: [CLBeacon]]()
     
+    let notifService = UserNotificationService()
+    
     weak var delegate: LocManagerDelegate?
     
     func initManager() {
         locationManager.delegate = self
         locationManager.allowsBackgroundLocationUpdates = true
-        locationManager.pausesLocationUpdatesAutomatically = false
+        locationManager.pausesLocationUpdatesAutomatically = true
     }
     
     func start(uuid: UUID) {
+        notifService.request()
         self.locationManager.requestAlwaysAuthorization()
-        
         NSLog("Create a new constraint and add it to the dictionary.")
         let constraint = CLBeaconIdentityConstraint(uuid: uuid)
         self.beaconConstraints[constraint] = []
@@ -66,39 +68,46 @@ class LocManager: NSObject, CLLocationManagerDelegate {
     // MARK: - Location Manager Delegate
     func locationManager(_ manager: CLLocationManager, didVisit visit: CLVisit) {
         NSLog("didVisit: \(visit)")
+        notifService.addNotification(title: "didVisit", subtitle: "\(visit)")
     }
     
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
         NSLog("Exit: \(region)")
+        notifService.addNotification(title: "Exit", subtitle: "\(region)")
     }
     
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
         NSLog("Enter: \(region)")
+        notifService.addNotification(title: "Enter", subtitle: "\(region)")
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         NSLog("UPDATE location: \(locations)")
+        notifService.addNotification(title: "UPDATE location", subtitle: "\(locations)")
     }
     
     func locationManager(_ manager: CLLocationManager, monitoringDidFailFor region: CLRegion?, withError error: Error) {
         NSLog("monitoringDidFailFor: \(region) \(error)")
+        notifService.addNotification(title: "monitoringDidFailFor", subtitle: "\(error)")
     }
     
     func locationManager(_ manager: CLLocationManager, didFailRangingFor beaconConstraint: CLBeaconIdentityConstraint, error: Error) {
         NSLog("ERROR: \(error)")
-
+        notifService.addNotification(title: "ERROR", subtitle: "\(error)")
     }
     
     func locationManager(_ manager: CLLocationManager, didStartMonitoringFor region: CLRegion) {
         NSLog("Start monitoring: \(region)")
         NSLog("man : \(manager)")
         NSLog("beacons: \(beacons) - beaconConstraints \(beaconConstraints)")
+        notifService.addNotification(title: "Start monitoring", subtitle: "\(region)")
     }
     
     /// - Tag: didDetermineState
     func locationManager(_ manager: CLLocationManager, didDetermineState state: CLRegionState, for region: CLRegion) {
         let beaconRegion = region as? CLBeaconRegion
         NSLog("DidDetermineState: \(state)")
+        notifService.addNotification(title: "DidDetermineState", subtitle: "\(state)")
         if state == .inside {
             NSLog("Start ranging when inside a region")
             manager.startRangingBeacons(satisfying: beaconRegion!.beaconIdentityConstraint)

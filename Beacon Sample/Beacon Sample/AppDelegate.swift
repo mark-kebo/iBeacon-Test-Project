@@ -9,16 +9,14 @@ import UIKit
 import CoreLocation
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, LocManagerDelegate {
-    var locationManager = LocManager()
+class AppDelegate: UIResponder, UIApplicationDelegate {
+    let locationManager = LocManager()
 
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         print("----> didFinishLaunchingWithOptions")
         locationManager.initManager()
-        locationManager.delegate = self
-        locationManager.start(uuid: UUID(uuidString: locationManager.defaultUUID)!)
         return true
     }
     
@@ -34,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LocManagerDelegate {
         print("----> applicationDidEnterBackground")
     }
     
-    func updated(beacons: [CLProximity : [CLBeacon]]) {
-        print("----> \(beacons)")
+    func application(_ application: UIApplication, didUpdate userActivity: NSUserActivity) {
+        print("----> didUpdate")
     }
 }

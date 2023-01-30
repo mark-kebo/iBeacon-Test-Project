@@ -12,13 +12,14 @@ class RangeBeaconViewController: UIViewController, UITableViewDelegate, UITableV
     
     @IBOutlet weak var tableView: UITableView!
 
-    var locationManager = LocManager()
+    weak var locationManager: LocManager?
     var beacons = [CLProximity: [CLBeacon]]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        locationManager.initManager()
-//        locationManager.delegate = self
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        locationManager = appDelegate.locationManager
+        locationManager?.delegate = self
     }
 
     @IBAction func addBeacon(_ sender: Any) {
@@ -30,14 +31,14 @@ class RangeBeaconViewController: UIViewController, UITableViewDelegate, UITableV
         
         alert.addTextField { [weak self] textField in
             textField.placeholder = "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
-            textField.text = self?.locationManager.defaultUUID
+            textField.text = self?.locationManager?.defaultUUID
             uuidTextField = textField
         }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         let addAction = UIAlertAction(title: "Add", style: .default) { alert in
             if let uuidString = uuidTextField.text, let uuid = UUID(uuidString: uuidString) {
-//                self.locationManager.start(uuid: uuid)
+                self.locationManager?.start(uuid: uuid)
             } else {
                 let invalidAlert = UIAlertController(title: "Invalid UUID",
                                                      message: "Please specify a valid UUID.",
